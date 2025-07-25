@@ -1,0 +1,42 @@
+END-USER LICENSE AGREEMENT (EULA)
+
+IMPORTANT: Please read this End-User License Agreement ("Agreement") carefully before using the Software.
+
+This Agreement is a legal agreement between you ("Licensee") and Security Avengers s.r.o. ("Licensor") for the use of the LibreOffice extension software ("Software").
+
+By installing or using the Software, you agree to be bound by the terms of this Agreement.
+
+1. GRANT OF LICENSE  
+Licensor hereby grants Licensee a non-exclusive, non-transferable license to use the Software on computers owned or controlled by the Licensee. This license is granted for internal business use only.
+
+2. RESTRICTIONS  
+Licensee may not:  
+- Distribute, sublicense, rent, lease, or sell the Software to any third party without prior written consent of the Licensor.  
+- Reverse engineer, decompile, or disassemble the Software.  
+- Use the Software for any purpose other than the agreed internal business needs.
+
+3. OWNERSHIP  
+The Software is licensed, not sold. All rights, title, and interest in and to the Software remain with the Licensor.
+
+4. SUPPORT AND UPDATES  
+Unless otherwise agreed in writing, this license does not include ongoing maintenance, updates, or support.
+
+5. LIMITED WARRANTY  
+The Software is provided "as is" without warranty of any kind, express or implied. Licensor does not warrant that the Software will meet your requirements or operate uninterrupted or error-free.
+
+6. LIABILITY  
+In no event shall the Licensor be liable for any damages arising out of or in connection with the use or inability to use the Software.
+
+7. TERMINATION  
+This license is effective until terminated. It will terminate automatically if Licensee fails to comply with any term of this Agreement. Upon termination, the Licensee must delete all copies of the Software.
+
+8. GOVERNING LAW  
+This Agreement shall be governed by and interpreted in accordance with the laws of the Czech Republic, without regard to its conflict of law rules.
+
+---
+
+For any inquiries or permissions, contact:
+
+David Pecl  
+Security Avengers s.r.o.  
+Email: david.pecl@avengers.cz

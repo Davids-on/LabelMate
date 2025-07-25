@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Module1" script:language="StarBasic" script:moduleType="normal">REM  *****  BASIC  *****
+
+REM  *****  BASIC  *****
+
+Sub SetClassification()
+    Dim oDoc As Object
+    oDoc = ThisComponent
+
+    ' Získání stylu stránky podle kurzoru
+    Dim oPageStyle As Object
+    oPageStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oDoc.CurrentController.getViewCursor().PageStyleName)
+
+    ' Zapnutí záhlaví, pokud není aktivní
+    If Not oPageStyle.HeaderIsOn Then
+        oPageStyle.HeaderIsOn = True
+    End If
+
+    ' Vložení do záhlaví (textové části)
+    Dim oHeaderText As Object
+    oHeaderText = oPageStyle.HeaderText
+
+    ' Vytvoření textového rámce
+    Dim oTextFrame As Object
+    oTextFrame = oDoc.createInstance("com.sun.star.text.TextFrame")
+
+    ' Nastavení velikosti rámce
+    Dim aSize As New com.sun.star.awt.Size
+    aSize.Width = 4000   ' 4 cm
+    aSize.Height = 800   ' 0.8 cm
+    oTextFrame.setSize(aSize)
+
+    ' Ukotvení k odstavci (v záhlaví)
+    oTextFrame.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+    ' Nastavení pozice
+    With oTextFrame
+        .HoriOrient = com.sun.star.text.HoriOrientation.NONE
+        .VertOrient = com.sun.star.text.VertOrientation.NONE
+        .HoriOrientPosition = 14000  ' posun zprava (~14 cm)
+        .VertOrientPosition = -200   ' trochu výš než normální záhlaví
+        .HoriOrientRelation = com.sun.star.text.RelOrientation.PAGE_FRAME
+        .VertOrientRelation = com.sun.star.text.RelOrientation.PAGE_FRAME
+    End With
+
+    ' Vložení do záhlaví
+    oHeaderText.insertTextContent(oHeaderText.getStart(), oTextFrame, False)
+
+    ' Nastavení textu
+    oTextFrame.Text.String = "TLP:Interní"
+End Sub
+
+</script:module>

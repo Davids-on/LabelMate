@@ -5,50 +5,49 @@
 REM  *****  BASIC  *****
 
 Sub SetClassification()
-    Dim oDoc As Object
-    oDoc = ThisComponent
+    labeltext = "TLP:Chranene"
+    Dim oDoc As Object : oDoc = ThisComponent
 
-    ' Získání stylu stránky podle kurzoru
-    Dim oPageStyle As Object
-    oPageStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oDoc.CurrentController.getViewCursor().PageStyleName)
+    ' Získání všech textových rámců
+    Dim oFrames As Object : oFrames = oDoc.getTextFrames()
 
-    ' Zapnutí záhlaví, pokud není aktivní
-    If Not oPageStyle.HeaderIsOn Then
-        oPageStyle.HeaderIsOn = True
+    ' Pokusíme se najít rámec s názvem "LabelMateFrame"
+    Dim oExistingFrame As Object
+    On Error Resume Next
+    oExistingFrame = oFrames.getByName("LabelMateFrame")
+    If Not IsNull(oExistingFrame) Then
+        ' Pokud existuje, smažeme ho
+        oDoc.getText().removeTextContent(oExistingFrame)
     End If
+    On Error GoTo 0
 
-    ' Vložení do záhlaví (textové části)
-    Dim oHeaderText As Object
-    oHeaderText = oPageStyle.HeaderText
-
-    ' Vytvoření textového rámce
+    ' Vytvoření nového rámce
     Dim oTextFrame As Object
     oTextFrame = oDoc.createInstance("com.sun.star.text.TextFrame")
+    oTextFrame.setName("LabelMateFrame")
 
-    ' Nastavení velikosti rámce
+    ' Nastavení velikosti
     Dim aSize As New com.sun.star.awt.Size
-    aSize.Width = 4000   ' 4 cm
-    aSize.Height = 800   ' 0.8 cm
+    aSize.Width = 4000
+    aSize.Height = 800
     oTextFrame.setSize(aSize)
 
-    ' Ukotvení k odstavci (v záhlaví)
+    ' Ukotvení k začátku dokumentu (později ho můžeš ukotvit jinam)
     oTextFrame.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
 
-    ' Nastavení pozice
-    With oTextFrame
-        .HoriOrient = com.sun.star.text.HoriOrientation.NONE
-        .VertOrient = com.sun.star.text.VertOrientation.NONE
-        .HoriOrientPosition = 14000  ' posun zprava (~14 cm)
-        .VertOrientPosition = -200   ' trochu výš než normální záhlaví
-        .HoriOrientRelation = com.sun.star.text.RelOrientation.PAGE_FRAME
-        .VertOrientRelation = com.sun.star.text.RelOrientation.PAGE_FRAME
-    End With
+    ' Pozice – ručně nastavena
+    oTextFrame.setPropertyValue("HoriOrient", 0) ' NONE
+    oTextFrame.setPropertyValue("VertOrient", 0) ' NONE
+    oTextFrame.setPropertyValue("HoriOrientPosition", 14000)
+    oTextFrame.setPropertyValue("VertOrientPosition", -2000)
+    oTextFrame.setPropertyValue("HoriOrientRelation", 4) ' PAGE_FRAME
+    oTextFrame.setPropertyValue("VertOrientRelation", 4) ' PAGE_FRAME
 
-    ' Vložení do záhlaví
-    oHeaderText.insertTextContent(oHeaderText.getStart(), oTextFrame, False)
+    ' Vložení do dokumentu (ukotveno na začátek textu – lze změnit)
+    oDoc.getText().insertTextContent(oDoc.getText().getStart(), oTextFrame, False)
 
-    ' Nastavení textu
-    oTextFrame.Text.String = "TLP:Interní"
+    ' Nastavení textu rámce
+    oTextFrame.Text.String = labelText
 End Sub
 
 </script:module>

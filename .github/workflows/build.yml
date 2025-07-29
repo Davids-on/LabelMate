@@ -19,10 +19,10 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore packages (optional)
-      run: nuget restore LibreOfficeDLL/LabelMateAddin.csproj
+      run: nuget restore LibreOfficeDLL/LabelMateDLL.csproj
 
     - name: Build LabelMateDLL
-      run: msbuild LibreOfficeDLL/LabelMateAddin.csproj /p:Configuration=Release /p:Platform="Any CPU"
+      run: msbuild LibreOfficeDLL/LabelMateDLL.csproj /p:Configuration=Release /p:Platform="Any CPU"
 
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4

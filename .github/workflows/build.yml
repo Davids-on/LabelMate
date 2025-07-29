@@ -1,0 +1,31 @@
+name: Build LabelMate DLL
+
+on:
+  push:
+    paths:
+      - 'LabelMateDLL/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore packages (optional)
+      run: nuget restore LabelMateDLL/LabelMateDLL.csproj
+
+    - name: Build LabelMateDLL
+      run: msbuild LabelMateDLL/LabelMateDLL.csproj /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: LabelMateDLL
+        path: LabelMateDLL/bin/Release/LabelMateDLL.dll

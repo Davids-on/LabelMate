@@ -8,15 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Reference to LibreOffice CLI DLLs (optional if only using uno.core types) -->
-    <Reference Include="cli_basetypes">
-      <HintPath>libreoffice-sdk/cli_basetypes.dll</HintPath>
-    </Reference>
-    <Reference Include="cli_ure">
-      <HintPath>libreoffice-sdk/cli_ure.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
+  <Reference Include="cli_ure">
+    <HintPath>libreoffice-sdk/cli_ure.dll</HintPath>
+  </Reference>
+  <Reference Include="cli_basetypes">
+    <HintPath>libreoffice-sdk/cli_basetypes.dll</HintPath>
+  </Reference>
+  <Reference Include="cli_oootypes">
+    <HintPath>libreoffice-sdk/cli_oootypes.dll</HintPath>
+  </Reference>
+  <Reference Include="cli_cppuhelper">
+    <HintPath>libreoffice-sdk/cli_cppuhelper.dll</HintPath>
+  </Reference>
+  <Reference Include="cli_uretypes">
+    <HintPath>libreoffice-sdk/cli_uretypes.dll</HintPath>
+  </Reference>
+</ItemGroup>
   <ItemGroup>
     <PackageReference Include="uno.core" Version="1.0.2" />
   </ItemGroup>

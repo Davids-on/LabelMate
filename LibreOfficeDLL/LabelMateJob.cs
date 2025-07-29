@@ -25,7 +25,7 @@ namespace LabelMateAddin
                 xCursor.gotoStart(false);
                 xText.insertString(xCursor, "[TLP:CHRNĚNÉ] ", false);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Console.WriteLine("LabelMateJob Error: " + ex.Message);
             }

@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: LabelMateDLL
-        path: LibreOfficeDLL/bin/Release/LabelMateAddin.dll
+        path: LibreOfficeDLL/bin/Any CPU/Release/net472/LabelMateAddin.dll
